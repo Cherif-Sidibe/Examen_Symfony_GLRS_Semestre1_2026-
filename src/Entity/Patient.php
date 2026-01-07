@@ -22,7 +22,7 @@ class Patient
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 9)]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
@@ -30,6 +30,15 @@ class Patient
 
     #[ORM\Column(length: 255)]
     private ?string $pwd = null;
+
+    #[ORM\Column(name: 'is_delete', options: ['default' => false])]
+    private ?bool $isDelete = null;
+
+    #[ORM\Column(name: 'create_at')]
+    private ?\DateTimeImmutable $createAt = null;
+
+    #[ORM\Column(name: 'update_at', nullable: true)]
+    private ?\DateTimeImmutable $updateAt = null;
 
     public function getId(): ?int
     {
@@ -72,7 +81,7 @@ class Patient
         return $this;
     }
 
-    public function getTelelephone(): ?string
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
@@ -104,6 +113,37 @@ class Patient
     public function setPwd(string $pwd): static
     {
         $this->pwd = $pwd;
+
+        return $this;
+    }
+
+    public function isIsDelete(): ?bool
+    {
+        return $this->isDelete;
+    }
+    public function setIsDelete(bool $isDelete): static
+    {
+        $this->isDelete = $isDelete;
+
+        return $this;
+    }
+    public function getCreateAt(): ?\DateTimeImmutable
+    {
+        return $this->createAt;
+    }
+    public function setCreateAt(\DateTimeImmutable $createAt): static
+    {
+        $this->createAt = $createAt;
+
+        return $this;
+    }
+    public function getUpdateAt(): ?\DateTimeImmutable
+    {
+        return $this->updateAt;
+    }
+    public function setUpdateAt(?\DateTimeImmutable $updateAt): static
+    {
+        $this->updateAt = $updateAt;
 
         return $this;
     }

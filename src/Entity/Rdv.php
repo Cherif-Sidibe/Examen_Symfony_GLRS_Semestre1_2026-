@@ -22,13 +22,17 @@ class Rdv
     #[ORM\Column(type: 'string', enumType: EtatEnum::class)]
     private ?EtatEnum $etat = EtatEnum::EN_ATTENTE;
 
-    #[ORM\ManyToOne(targetEntity: Patient::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Patient $patient = null;
-
     #[ORM\Column(type: 'string', enumType: SpecialiteEnum::class, nullable: true)]
     private ?SpecialiteEnum $specialite = null;
 
+    #[ORM\Column (name: 'is_delete', options: ['default' => false])]
+    private ?bool $isDelete = null;
+
+    #[ORM\Column (name: 'create_at')]
+    private ?\DateTimeImmutable $createAt = null;
+
+    #[ORM\Column    (name: 'update_at', nullable: true)]
+    private ?\DateTimeImmutable $updateAt = null;
 
 
     public function getId(): ?int
@@ -72,18 +76,6 @@ class Rdv
         return $this;
     }
 
-    public function getPatient(): ?Patient
-    {
-        return $this->patient;
-    }
-
-    public function setPatient(Patient $patient): static
-    {
-        $this->patient = $patient;
-
-        return $this;
-    }
-
     public function getSpecialite(): ?SpecialiteEnum
     {
         return $this->specialite;
@@ -96,4 +88,36 @@ class Rdv
 
         return $this;
     } 
+    
+    public function isIsDelete(): ?bool
+    {
+        return $this->isDelete;
+    }
+    public function setIsDelete(bool $isDelete): static
+    {
+        $this->isDelete = $isDelete;
+
+        return $this;
+    }
+    public function getCreateAt(): ?\DateTimeImmutable
+    {
+        return $this->createAt;
+    }
+    public function setCreateAt(\DateTimeImmutable $createAt): static
+    {
+        $this->createAt = $createAt;
+
+        return $this;
+    }
+    public function getUpdateAt(): ?\DateTimeImmutable
+    {
+        return $this->updateAt; 
+    }
+    public function setUpdateAt(?\DateTimeImmutable $updateAt): static
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
 }
