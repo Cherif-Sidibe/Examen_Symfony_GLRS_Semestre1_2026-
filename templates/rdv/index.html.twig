@@ -55,11 +55,12 @@
 									{{ rdv.patient.prenom }}</td>
 								<td>{{ rdv.dateAt|date('d/m/Y H:i') }}</td>
 								<td>{{ rdv.type.value }}</td>
-								<td>{{ rdv.specialite.value }}</td>
+								<td>{{ rdv.specialite ? rdv.specialite.value : '' }}</td>
+
 								<td>{{ rdv.etat.value }}</td>
 								<td>
-									<button class="btn btn-success btn-sm">Valider</button>
-									<button class="btn btn-danger btn-sm">Annuler</button>
+									<a class="btn btn-success btn-sm" href="{{ path('app_validation_valider', {id: rdv.id}) }}">Valider</a>
+									<a class="btn btn-danger btn-sm" href="{{ path('app_validation_annuler', {id: rdv.id}) }}">Annuler</a>
 								</td>
 							</tr>
 						{% else %}
