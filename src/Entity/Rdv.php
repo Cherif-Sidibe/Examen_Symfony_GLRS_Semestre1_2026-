@@ -34,6 +34,9 @@ class Rdv
     #[ORM\Column    (name: 'update_at', nullable: true)]
     private ?\DateTimeImmutable $updateAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'rdvs')]
+    private ?Patient $patient = null;
+
 
     public function getId(): ?int
     {
@@ -116,6 +119,18 @@ class Rdv
     public function setUpdateAt(?\DateTimeImmutable $updateAt): static
     {
         $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): static
+    {
+        $this->patient = $patient;
 
         return $this;
     }
