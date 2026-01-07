@@ -1,76 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RdvController!{% endblock %}
+{% block title %}Hello RdvController!
+{% endblock %}
 
 {% block body %}
-<div class="container my-4">
-    <h2 class="card-title mb-4">Liste des demandes</h2>
-    <div class="card mb-4">
-        <div class="card-body">
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <select class="form-select">
-                        <option selected>Tous</option>
-                        <option>En attente</option>
-                        <option>Validé</option>
-                        <option>Annulé</option>
-                    </select>
-                </div>
+	<div class="container my-4">
+		<h2 class="card-title mb-4">Liste des demandes</h2>
+		<div class="card mb-4">
+			<div class="card-body">
+				<div class="row g-3">
+					<div class="col-md-4">
+						<select class="form-select">
+							<option selected>Tous</option>
+							<option>En attente</option>
+							<option>Validé</option>
+							<option>Annulé</option>
+						</select>
+					</div>
 
-                <div class="col-md-4">
-                    <select class="form-select">
-                        <option selected>Tous</option>
-                        <option>Consultation</option>
-                        <option>Contrôle</option>
-                    </select>
-                </div>
+					<div class="col-md-4">
+						<select class="form-select">
+							<option selected>Tous</option>
+							<option>Consultation</option>
+							<option>Contrôle</option>
+						</select>
+					</div>
 
-                <div class="col-md-4">
-                    <button class="btn btn-primary mt-4">Filtrer</button>
-                </div>
-            </div>
-        </div>
-    </div>
+					<div class="col-md-4">
+						<button class="btn btn-primary mt-4">Filtrer</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div class="card mb-5">
-        <div class="card-body">
-            <table class="table table-bordered table-hover align-middle text-center">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Patient</th>
-                        <th>Date</th>
-                        <th>Type</th>
-                        <th>Spécialité</th>
-                        <th>État</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for rdv in rdvs %}
-                    <tr>
-                        <td>{{ rdv.id }}</td>
-                        <td>{{ rdv.patient }}</td>
-                        <td>{{ rdv.date|date('d/m/Y H:i') }}</td>
-                        <td>{{ rdv.type }}</td>
-                        <td>{{ rdv.specialite }}</td>
-                        <td>{{ rdv.etat }}</td>
-                        <td>
-                            <button class="btn btn-success btn-sm">Valider</button>
-                            <button class="btn btn-danger btn-sm">Annuler</button>
-                        </td>
-                    </tr>
-                    {% else %}
-                    <tr>
-                        <td colspan="7">Aucun rendez-vous trouvé.</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+		<div class="card mb-5">
+			<div class="card-body">
+				<table class="table table-bordered table-hover align-middle text-center">
+					<thead class="table-dark">
+						<tr>
+							<th>#</th>
+							<th>Patient</th>
+							<th>Date</th>
+							<th>Type</th>
+							<th>Spécialité</th>
+							<th>État</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for rdv in rdvs %}
+							<tr>
+								<td>{{ rdv.id }}</td>
+								<td>{{ rdv.patient.nom }}
+									{{ rdv.patient.prenom }}</td>
+								<td>{{ rdv.dateAt|date('d/m/Y H:i') }}</td>
+								<td>{{ rdv.type.value }}</td>
+								<td>{{ rdv.specialite.value }}</td>
+								<td>{{ rdv.etat.value }}</td>
+								<td>
+									<button class="btn btn-success btn-sm">Valider</button>
+									<button class="btn btn-danger btn-sm">Annuler</button>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="7">Aucun rendez-vous trouvé.</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 
-
-</div>
+	</div>
 {% endblock %}

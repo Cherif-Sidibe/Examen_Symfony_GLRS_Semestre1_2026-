@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de rendez-vous
+{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">{{ message }}</div>
+	{% endfor %}
+	{% for message in app.flashes('danger') %}
+		<div class="alert alert-danger">{{ message }}</div>
+	{% endfor %}
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Demande de rendez-vous</h5>
+
+			{{ form_start(form) }}
+			<div class="row g-3">
+				<div class="col-md-6">{{ form_row(form.login) }}</div>
+				<div class="col-md-6">{{ form_row(form.pwd) }}</div>
+				<div class="col-md-6">{{ form_row(form.dateAt) }}</div>
+				<div class="col-md-6">{{ form_row(form.type) }}</div>
+				<div class="col-md-12">{{ form_row(form.specialite) }}</div>
+			</div>
+
+			<div class="mt-4 text-end">
+				<button class="btn btn-primary">Confirmer</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

@@ -37,6 +37,12 @@ class Rdv
     #[ORM\ManyToOne(inversedBy: 'rdvs')]
     private ?Patient $patient = null;
 
+    public function __construct()
+    {
+        $this->isDelete = false;
+        $this->createAt = new \DateTimeImmutable();
+        $this->updateAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
